@@ -11,7 +11,7 @@ class WebForm {
             return this.addPage(el);
 
         else {
-            
+
             if (this.pages.length == 0)
                 this.add(new Page());
 
@@ -24,7 +24,47 @@ class WebForm {
     }
 
     page(id) {
-        // TODO
+        
+        if (typeof id == 'number')
+            return this.pages[id];
+
+        else {
+
+            var obj;
+
+            this.pages.forEach(function(el) {
+                if (!obj && el.name == id) obj = el;
+            
+            }); return obj;
+        }
+    }
+
+    section(id) {
+        var obj;
+        
+        if (typeof id == 'number') {
+
+            this.pages.forEach(function(el) {
+                
+                if (!obj) {
+
+                    if (id < el.sections.length)
+                        obj = el.section(id);
+                    else
+                        id -= el.sections.length;
+                }
+
+            }); return obj; 
+
+        } else {
+
+            var section;
+
+            this.pages.forEach(function(el) {
+                if (!obj && (section = el.section(id))) obj = section;
+            
+            }); return obj;
+        }
     }
 }
 
@@ -54,7 +94,19 @@ class Page {
     }
 
     section(id) {
-        // TODO
+    
+        if (typeof id == 'number')
+            return this.sections[id];
+
+        else {
+
+            var obj;
+
+            this.sections.forEach(function(el) {
+                if (!obj && el.name == id) obj = el;
+            
+            }); return obj;
+        }
     }
 }
 
@@ -90,7 +142,7 @@ class Section {
 
 class SubSection {
 
-    constructor(name = '') {
+    constructor() {
         this.name = name;
         this.rows = new Array();
     }
