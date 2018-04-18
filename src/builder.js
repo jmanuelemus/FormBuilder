@@ -102,8 +102,11 @@ class SubSection {
         
         else {
 
-            if (this.rows.length == 0)
+            if (this.rows.length == 0 || el instanceof Input)
                 this.add(new Row());
+
+            if (el instanceof Input)
+                return this.rows[this.rows.length - 1].add(el);
 
             return this.rows[0].add(el);
         }
