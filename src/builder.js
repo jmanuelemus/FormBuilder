@@ -246,3 +246,11 @@ class Input
         this.name = name;
     }
 }
+
+class TextBox extends Input
+{
+    constructor(name)
+    {
+        super(name);
+    }
+}
