@@ -239,3 +239,11 @@ class Column
         return (typeof id == 'number') ? this.io.get(id) : this.io.find('name', id);
     }
 }
+
+class Input
+{
+    constructor(name)
+    {
+        this.name = name;
+    }
+}
