@@ -3,7 +3,7 @@ class FormBuilder
     constructor()
     {
         this.toolbox = new Toolbox(); 
-        this.form    = new Form();
+        this.form = new Form();
     }
 
     add(ctrl)
@@ -56,6 +56,11 @@ class ArrayList
     constructor()
     {
         this.arr = new Array();
+    }
+
+    get last()
+    {
+        return this.arr[this.length - 1];
     }
 
     get length()
@@ -179,14 +184,8 @@ class Subsection
     {
         if (ctrl instanceof Row)
             this.rows.add(ctrl);
-
         else
-        {
-            if (this.rows.length == 0)
-                this.rows.add(new Row());
-
-            this.row(0).add(ctrl);
-        }
+            this.rows.add(new Row()) && this.rows.last.add(ctrl);;
     }
 
     row(i)
