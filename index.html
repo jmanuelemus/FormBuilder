@@ -9,17 +9,27 @@
         
         builder = new FormBuilder();
 
-        builder.Toolbox.add(new Control('Page', [
+        text = new Control('TextBox', [
+            {
+                name: 'maxLength', 
+                type: 'Integer'
+            },
+            {
+                name: 'minLength', 
+                type: 'Integer'
+            },
             {
                 name: 'name', 
                 type: 'String'
+            },
+            {
+                name: 'placeholder', 
+                type: 'String'
             }
-        ]));
+        ]);
 
-        builder.Form.add(new Page('Page 1'));
-        builder.Form.add(new Page('Page 2'));
-
-        console.log(builder.Form.page(0));
+        builder.add(text);
+        
     </script>
 </body>
 </html>

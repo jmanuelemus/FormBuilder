@@ -6,6 +6,11 @@ class FormBuilder
 
         this.Form    = new Form();
     }
+
+    add(ctrl)
+    {
+        this.Form.add(ctrl);
+    }
 }
 
 class Toolbox
@@ -123,7 +128,7 @@ class Page
 
         else
         {
-            if (this.Sections.length = 0)
+            if (this.Sections.length == 0)
                 this.Sections.add(new Section('Unnamed Section'))
 
             this.section(0).add(ctrl);
@@ -140,6 +145,99 @@ class Section
 {
     constructor(name = '')
     {
+        this.Subsections = new ArrayList();
+
         this.name = name;
+    }
+
+    add(ctrl)
+    {
+        if (ctrl instanceof Subsection)
+            this.Subsections.add(ctrl);
+
+        else
+        {
+            if (this.Subsections.length == 0)
+                this.Subsections.add(new Subsection());
+
+            this.subsection(0).add(ctrl);
+        }
+    }
+
+    subsection(i)
+    {
+        return this.Subsections.get(i);
+    }
+}
+
+class Subsection
+{
+    constructor()
+    {
+        this.Rows = new ArrayList();
+    }
+
+    add(ctrl)
+    {
+        if (ctrl instanceof Row)
+            this.Rows.add(ctrl);
+
+        else
+        {
+            if (this.Rows.length == 0)
+                this.Rows.add(new Row());
+
+            this.row(0).add(ctrl);
+        }
+    }
+
+    row(i)
+    {
+        return this.Rows.get(i);
+    }
+}
+
+class Row
+{
+    constructor()
+    {
+        this.Columns = new ArrayList();
+    }
+
+    add(ctrl)
+    {
+        if (ctrl instanceof Column)
+            this.Columns.add(ctrl);
+
+        else
+        {
+            if (this.Columns.length == 0)
+                this.Columns.add(new Column());
+
+            this.column(0).add(ctrl);
+        }
+    }
+
+    column(i)
+    {
+        return this.Columns.get(i);
+    }
+}
+
+class Column
+{
+    constructor()
+    {
+        this.Inputs = new ArrayList();
+    }
+
+    add(ctrl)
+    {
+        this.Inputs.add(ctrl);
+    }
+
+    control(id)
+    {
+        return (typeof id == 'number') ? this.Inputs.get(id) : this.Inputs.find('name', id);
     }
 }
