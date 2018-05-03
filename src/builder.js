@@ -2,14 +2,13 @@ class FormBuilder
 {
     constructor()
     {
-        this.Toolbox = new Toolbox(); 
-
-        this.Form    = new Form();
+        this.toolbox = new Toolbox(); 
+        this.form    = new Form();
     }
 
     add(ctrl)
     {
-        this.Form.add(ctrl);
+        this.form.add(ctrl);
     }
 }
 
@@ -17,13 +16,13 @@ class Toolbox
 {
     constructor()
     {
-        this.controls = new Array();
+        this.ctrls = new Array();
     }
 
     add(ctrl)
     {
         if (ctrl instanceof Control)
-            this.controls.push(ctrl);
+            this.ctrls.push(ctrl);
         else 
             return false;
     }
@@ -33,10 +32,10 @@ class Control
 {
     constructor(type, props)
     {
-        this.properties = new Array();
+        this.props = new Array();
 
         for (var i = 0; i < props.length; i++) 
-            this.properties.push(new Property(props[i]));
+            this.props.push(new Property(props[i]));
 
         this.type = type;
     }
@@ -56,23 +55,23 @@ class ArrayList
 {
     constructor()
     {
-        this.array = new Array();
+        this.arr = new Array();
     }
 
     get length()
     {
-        return this.array.length;
+        return this.arr.length;
     }
 
     add(el)
     {
-        return this.array.push(el);
+        return this.arr.push(el);
     }
 
     find(attrib, value)
     {
-        for (var i = 0; i < this.array.length; i++) {
-            var el = this.array[i];
+        for (var i = 0; i < this.arr.length; i++) {
+            var el = this.arr[i];
 
             if (el[attrib] == value) 
                 return el;
@@ -81,7 +80,7 @@ class ArrayList
 
     get(i)
     {
-        return this.array[i];
+        return this.arr[i];
     }
 }
 
@@ -89,18 +88,18 @@ class Form
 {
     constructor()
     {
-        this.Pages = new ArrayList();
+        this.pages = new ArrayList();
     }
 
     add(ctrl)
     {
         if (ctrl instanceof Page)
-            this.Pages.add(ctrl);
+            this.pages.add(ctrl);
 
         else 
         {
-            if (this.Pages.length == 0)
-                this.Pages.add(new Page('Untitled Page'));
+            if (this.pages.length == 0)
+                this.pages.add(new Page('Untitled Page'));
 
             this.page(0).add(ctrl);
         }
@@ -108,7 +107,7 @@ class Form
 
     page(id)
     {
-        return (typeof id == 'number') ? this.Pages.get(id) : this.Pages.find('name', id);
+        return (typeof id == 'number') ? this.pages.get(id) : this.pages.find('name', id);
     }
 }
 
@@ -116,7 +115,7 @@ class Page
 {
     constructor(name = '')
     {
-        this.Sections = new ArrayList();
+        this.sections = new ArrayList();
 
         this.name = name;
     }
@@ -124,12 +123,12 @@ class Page
     add(ctrl)
     {
         if (ctrl instanceof Section)
-            this.Sections.add(ctrl);
+            this.sections.add(ctrl);
 
         else
         {
-            if (this.Sections.length == 0)
-                this.Sections.add(new Section('Unnamed Section'))
+            if (this.sections.length == 0)
+                this.sections.add(new Section('Unnamed Section'))
 
             this.section(0).add(ctrl);
         }
@@ -137,7 +136,7 @@ class Page
 
     section(id)
     {
-        return (typeof id == 'number') ? this.Sections.get(id) : this.Sections.find('name', id);
+        return (typeof id == 'number') ? this.sections.get(id) : this.sections.find('name', id);
     }
 }
 
@@ -145,28 +144,27 @@ class Section
 {
     constructor(name = '')
     {
-        this.Subsections = new ArrayList();
-
+        this.subs = new ArrayList();
         this.name = name;
     }
 
     add(ctrl)
     {
         if (ctrl instanceof Subsection)
-            this.Subsections.add(ctrl);
+            this.subs.add(ctrl);
 
         else
         {
-            if (this.Subsections.length == 0)
-                this.Subsections.add(new Subsection());
+            if (this.subs.length == 0)
+                this.subs.add(new Subsection());
 
-            this.subsection(0).add(ctrl);
+            this.sub(0).add(ctrl);
         }
     }
 
-    subsection(i)
+    sub(i)
     {
-        return this.Subsections.get(i);
+        return this.subs.get(i);
     }
 }
 
@@ -174,18 +172,18 @@ class Subsection
 {
     constructor()
     {
-        this.Rows = new ArrayList();
+        this.rows = new ArrayList();
     }
 
     add(ctrl)
     {
         if (ctrl instanceof Row)
-            this.Rows.add(ctrl);
+            this.rows.add(ctrl);
 
         else
         {
-            if (this.Rows.length == 0)
-                this.Rows.add(new Row());
+            if (this.rows.length == 0)
+                this.rows.add(new Row());
 
             this.row(0).add(ctrl);
         }
@@ -193,7 +191,7 @@ class Subsection
 
     row(i)
     {
-        return this.Rows.get(i);
+        return this.rows.get(i);
     }
 }
 
@@ -201,26 +199,26 @@ class Row
 {
     constructor()
     {
-        this.Columns = new ArrayList();
+        this.cols = new ArrayList();
     }
 
     add(ctrl)
     {
         if (ctrl instanceof Column)
-            this.Columns.add(ctrl);
+            this.cols.add(ctrl);
 
         else
         {
-            if (this.Columns.length == 0)
-                this.Columns.add(new Column());
+            if (this.cols.length == 0)
+                this.cols.add(new Column());
 
-            this.column(0).add(ctrl);
+            this.col(0).add(ctrl);
         }
     }
 
-    column(i)
+    col(i)
     {
-        return this.Columns.get(i);
+        return this.cols.get(i);
     }
 }
 
@@ -228,16 +226,16 @@ class Column
 {
     constructor()
     {
-        this.Inputs = new ArrayList();
+        this.io = new ArrayList();
     }
 
     add(ctrl)
     {
-        this.Inputs.add(ctrl);
+        this.io.add(ctrl);
     }
 
     control(id)
     {
-        return (typeof id == 'number') ? this.Inputs.get(id) : this.Inputs.find('name', id);
+        return (typeof id == 'number') ? this.io.get(id) : this.io.find('name', id);
     }
 }
