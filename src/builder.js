@@ -75,6 +75,12 @@ class ArrayList
 
     find(attrib, value)
     {
+        if (arguments.length == 1) {
+            value = attrib; 
+
+            attrib = 'name';
+        }
+
         for (var i = 0; i < this.arr.length; i++) {
             var el = this.arr[i];
 
@@ -112,7 +118,7 @@ class Form
 
     page(id)
     {
-        return (typeof id == 'number') ? this.pages.get(id) : this.pages.find('name', id);
+        return (typeof id == 'number') ? this.pages.get(id) : this.pages.find(id);
     }
 }
 
@@ -141,7 +147,7 @@ class Page
 
     section(id)
     {
-        return (typeof id == 'number') ? this.sections.get(id) : this.sections.find('name', id);
+        return (typeof id == 'number') ? this.sections.get(id) : this.sections.find(id);
     }
 }
 
@@ -235,7 +241,7 @@ class Column
 
     control(id)
     {
-        return (typeof id == 'number') ? this.io.get(id) : this.io.find('name', id);
+        return (typeof id == 'number') ? this.io.get(id) : this.io.find(id);
     }
 }
 

@@ -28,8 +28,14 @@
             }
         ]);
 
+        builder.add(new Page('Page 1'));
+
+        console.log(builder.form.page('Page 1'));
+
         builder.add(new TextBox('givenName'));
         builder.add(new TextBox('familyName'));
+
+        
 
     </script>
 </body>
