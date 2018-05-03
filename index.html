@@ -6,10 +6,20 @@
 <body>
     <script type="text/javascript" src="src/builder.js"></script>
     <script type="text/javascript">
-        form = new WebForm();
+        
+        builder = new FormBuilder();
 
-        form.add(new Input('givenName'));
-        form.add(new Input('familyName'));
+        builder.Toolbox.add(new Control('Page', [
+            {
+                name: 'name', 
+                type: 'String'
+            }
+        ]));
+
+        builder.Form.add(new Page('Page 1'));
+        builder.Form.add(new Page('Page 2'));
+
+        console.log(builder.Form.page(0));
     </script>
 </body>
 </html>
