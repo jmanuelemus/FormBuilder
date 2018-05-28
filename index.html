@@ -9,7 +9,20 @@
         
         builder = new FormBuilder();
 
-        text = new Control('TextBox', [
+        builder.add(new Page('Page 1'));
+
+        builder.add(new Section('Section 1'));
+        builder.add(new Section('Section 2'));
+
+        builder.add(new Page('Page 2'));
+
+        builder.form.page(1).add(new Section('Section 3'));
+        builder.form.page(1).add(new Section('Section 4'));
+
+        builder.add(new TextBox('givenName'));
+        builder.add(new TextBox('familyName'));
+
+        builder.toolbox.add(new Control('TextBox', [
             {
                 name: 'maxLength', 
                 type: 'Integer'
@@ -26,23 +39,7 @@
                 name: 'placeholder', 
                 type: 'String'
             }
-        ]);
-
-        builder.add(new Page('Page 1'));
-
-        builder.add(new Section('Section 1'));
-        builder.add(new Section('Section 2'));
-
-        builder.add(new Page('Page 2'));
-
-        builder.form.page(1).add(new Section('Section 3'));
-        builder.form.page(1).add(new Section('Section 4'));
-
-        builder.add(new TextBox('givenName'));
-        builder.add(new TextBox('familyName'));
-
-        
-
+        ]));
     </script>
 </body>
 </html>

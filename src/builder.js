@@ -133,9 +133,8 @@ class Property
 {
     constructor(args)
     {
-        this.name = args.name; 
-
-        this.type = args.type;
+        for (const [key, value] of Object.entries(args))
+            this[key] = value;
     }
 }
 
