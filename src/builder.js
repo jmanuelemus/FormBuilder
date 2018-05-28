@@ -256,12 +256,7 @@ class Row
             this.cols.add(ctrl);
 
         else
-        {
-            if (this.cols.length == 0)
-                this.cols.add(new Column());
-
-            this.col(0).add(ctrl);
-        }
+            this.cols.add(new Column()) && this.col(0).add(ctrl);
     }
 
     col(i)
