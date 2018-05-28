@@ -1,3 +1,60 @@
+class ArrayList
+{
+    constructor()
+    {
+        this.arr = new Array();
+    }
+
+    get last()
+    {
+        return this.arr[this.length - 1];
+    }
+
+    get length()
+    {
+        return this.arr.length;
+    }
+
+    add(el)
+    {
+        return this.arr.push(el);
+    }
+
+    addAll(arr)
+    {
+        for (var i = 0; i < arr.length; i++)
+            this.add(arr[i]);
+
+        return true;
+    }
+
+    find(attrib, value)
+    {
+        if (arguments.length == 1) {
+            value = attrib;
+
+            attrib = 'name';
+        }
+
+        for (var i = 0; i < this.arr.length; i++) {
+            var el = this.arr[i];
+
+            if (el[attrib] == value) 
+                return el;
+        }
+    }
+
+    get(i)
+    {
+        return this.arr[i];
+    }
+
+    toArray()
+    {
+        return this.arr;
+    }
+}
+
 class FormBuilder
 {
     constructor()
@@ -6,9 +63,40 @@ class FormBuilder
         this.form = new Form();
     }
 
+    get pages()
+    {
+        return this.form.pages;
+    }
+
+    get sections()
+    {
+        var arr = new ArrayList();
+
+        for (var i = 0; i < this.pages.length; i++)
+            arr.addAll(this.form.page(i).sections.toArray());
+
+        return arr;
+    }
+
     add(ctrl)
     {
         this.form.add(ctrl);
+    }
+
+    find(id)
+    {
+        var el;
+
+        if (typeof id != 'string') 
+            return false;
+
+        else if (el = this.form.page(id)) 
+            return el;
+
+        else
+        {
+            // TODO
+        }
     }
 }
 
@@ -48,50 +136,6 @@ class Property
         this.name = args.name; 
 
         this.type = args.type;
-    }
-}
-
-class ArrayList
-{
-    constructor()
-    {
-        this.arr = new Array();
-    }
-
-    get last()
-    {
-        return this.arr[this.length - 1];
-    }
-
-    get length()
-    {
-        return this.arr.length;
-    }
-
-    add(el)
-    {
-        return this.arr.push(el);
-    }
-
-    find(attrib, value)
-    {
-        if (arguments.length == 1) {
-            value = attrib; 
-
-            attrib = 'name';
-        }
-
-        for (var i = 0; i < this.arr.length; i++) {
-            var el = this.arr[i];
-
-            if (el[attrib] == value) 
-                return el;
-        }
-    }
-
-    get(i)
-    {
-        return this.arr[i];
     }
 }
 
