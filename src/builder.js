@@ -1,10 +1,5 @@
 class ArrayList
 {
-    constructor()
-    {
-        this.arr = new Array();
-    }
-
     get last()
     {
         return this.arr[this.length - 1];
@@ -13,6 +8,11 @@ class ArrayList
     get length()
     {
         return this.arr.length;
+    }
+
+    constructor()
+    {
+        this.arr = new Array();
     }
 
     add(el)
@@ -57,12 +57,6 @@ class ArrayList
 
 class FormBuilder
 {
-    constructor()
-    {
-        this.toolbox = new Toolbox(); 
-        this.form = new Form();
-    }
-
     get pages()
     {
         return this.form.pages;
@@ -76,6 +70,12 @@ class FormBuilder
             arr.addAll(this.form.page(i).sections.toArray());
 
         return arr;
+    }
+    
+    constructor()
+    {
+        this.toolbox = new Toolbox(); 
+        this.form = new Form();
     }
 
     add(ctrl)
