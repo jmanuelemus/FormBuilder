@@ -63,13 +63,25 @@ class FormBuilder
     get sections()
     {
         var arr = new ArrayList();
-        
+
         var pages = this.pages;
 
         for (var i = 0; i < pages.length; i++)
             arr.addAll(pages[i].sections.toArray());
 
-        return arr;
+        return arr.toArray();
+    }
+
+    get subsections()
+    {
+        var arr = new ArrayList();
+
+        var sections = this.sections;
+
+        for (var i = 0; i < sections.length; i++)
+            arr.addAll(sections[i].subs.toArray());
+
+        return arr.toArray();
     }
     
     constructor()
