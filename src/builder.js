@@ -31,9 +31,7 @@ class ArrayList
     find(attrib, value)
     {
         if (arguments.length == 1) {
-            value = attrib;
-
-            attrib = 'name';
+            value = attrib; attrib = 'name';
         }
 
         for (var i = 0; i < this.arr.length; i++) {
@@ -74,7 +72,8 @@ class FormBuilder
     
     constructor()
     {
-        this.toolbox = new Toolbox(); 
+        this.toolbox = new Toolbox();
+
         this.form = new Form();
     }
 
@@ -118,14 +117,14 @@ class Toolbox
 
 class Control
 {
-    constructor(type, props)
+    constructor(name, props)
     {
         this.props = new Array();
 
         for (var i = 0; i < props.length; i++) 
             this.props.push(new Property(props[i]));
 
-        this.type = type;
+        this.name = name;
     }
 }
 
@@ -161,7 +160,10 @@ class Form
 
     page(id)
     {
-        return (typeof id == 'number') ? this.pages.get(id) : this.pages.find(id);
+        if (typeof id == 'number') 
+            return this.pages.get(id) 
+        else
+            return this.pages.find(id);
     }
 }
 
@@ -190,7 +192,10 @@ class Page
 
     section(id)
     {
-        return (typeof id == 'number') ? this.sections.get(id) : this.sections.find(id);
+        if (typeof id == 'number') 
+            return this.sections.get(id) 
+        else
+            return this.sections.find(id);
     }
 }
 
@@ -199,6 +204,7 @@ class Section
     constructor(name = '')
     {
         this.subs = new ArrayList();
+
         this.name = name;
     }
 
@@ -210,7 +216,7 @@ class Section
         else
         {
             if (this.subs.length == 0)
-                this.subs.add(new Subsection());
+                this.subs.add(new Subsection);
 
             this.sub(0).add(ctrl);
         }
@@ -279,7 +285,10 @@ class Column
 
     control(id)
     {
-        return (typeof id == 'number') ? this.io.get(id) : this.io.find(id);
+        if (typeof id == 'number') 
+            return this.io.get(id) 
+        else
+            return this.io.find(id);
     }
 }
 
