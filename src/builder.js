@@ -97,6 +97,11 @@ class FormBuilder
             // TODO
         }
     }
+
+    page(id)
+    {
+        return this.form.page(id);
+    }
 }
 
 class Toolbox
