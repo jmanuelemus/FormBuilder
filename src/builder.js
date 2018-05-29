@@ -57,15 +57,17 @@ class FormBuilder
 {
     get pages()
     {
-        return this.form.pages;
+        return this.form.pages.toArray();
     }
 
     get sections()
     {
         var arr = new ArrayList();
+        
+        var pages = this.pages;
 
-        for (var i = 0; i < this.pages.length; i++)
-            arr.addAll(this.form.page(i).sections.toArray());
+        for (var i = 0; i < pages.length; i++)
+            arr.addAll(pages[i].sections.toArray());
 
         return arr;
     }
