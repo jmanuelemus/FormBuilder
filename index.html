@@ -4,43 +4,17 @@
     <meta charset="utf-8">
 </head>
 <body>
+    <form>
+        <page name="Page 1">
+        </page>
+
+        <page name="Page 2">
+        </page>
+    </form>
+
     <script type="text/javascript" src="src/builder.js"></script>
     <script type="text/javascript">
-        
-        builder = new FormBuilder();
-
-        builder.add(new Page('Page 1'));
-
-        builder.add(new Section('Section 1'));
-        builder.add(new Section('Section 2'));
-
-        builder.add(new Page('Page 2'));
-
-        builder.page(1).add(new Section('Section 3'));
-        builder.page(1).add(new Section('Section 4'));
-
-        builder.add(new TextBox('givenName'));
-        builder.add(new TextBox('familyName'));
-
-        builder.toolbox.add(new Control('TextBox', [
-            {
-                maxValue: 1234,
-                name: 'maxLength', 
-                type: 'Integer'
-            },
-            {
-                name: 'minLength', 
-                type: 'Integer'
-            },
-            {
-                name: 'name', 
-                type: 'String'
-            },
-            {
-                name: 'placeholder', 
-                type: 'String'
-            }
-        ]));
+        $('form').builder();
     </script>
 </body>
 </html>
