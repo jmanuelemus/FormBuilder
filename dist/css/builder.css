@@ -1,1 +1,108 @@
-// TODO
+#toolbox, .properties {
+    display: none;
+}
+
+#builder {
+    margin: 0 auto;
+    position: relative;
+    width: 960px;
+}
+
+#builder #toolbox {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: -90px;
+    width: 66px;
+}
+
+#builder #toolbox .ctrl {
+    background: #f6f8fa;
+    display: inline-block;
+    float: left;
+    height: 30px;
+    margin: 1.5px;
+    width: 30px;
+}
+
+#builder .properties {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: -300px;
+    width: 270px;
+}
+
+#builder .properties .prop {
+    border-bottom: 1px solid #ddd;
+    height: 30px;
+}
+
+#builder .properties .prop:last-child {
+    border-bottom: none;
+}
+
+#builder .properties .prop input {
+    border: none;
+}
+
+#builder form,
+#builder form .ctrl {
+    border: 1px dashed #ddd;
+    margin: 0;
+    padding: 3px;
+}
+
+#builder form:before,
+#builder form .ctrl:before {
+    color: #ddd;
+    display: block;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+}
+
+#builder form:before {
+    content: 'Form';
+}
+
+#builder form .page:before {
+    content: 'Page';
+}
+
+#builder form section:before {
+    content: 'Section';
+}
+
+#builder form .sub:before {
+    content: 'Subsection';
+}
+
+#builder form .row:before {
+    content: 'Row';
+}
+
+#builder form .col:before {
+    content: 'Column';
+}
+
+#builder form .io:before {
+    content: 'Input';
+}
+
+#builder form input,
+#builder form select,
+#builder form textarea {
+    width: calc(100% - 15px);
+}
